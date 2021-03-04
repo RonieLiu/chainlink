@@ -40,6 +40,7 @@ export default {
       type: 'ethtx',
       confirmations: null,
       params: {},
+      fromAddress: "0x9ca9d2d5e04012c9ed24c0e513c9bfaa4a2dd77f",
     },
   ],
   startAt: null,
