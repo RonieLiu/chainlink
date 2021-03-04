@@ -116,6 +116,7 @@ beforeAll(async () => {
       node2Address = keys[i].address
     }
   }
+  console.log(node1Address, node2Address)
 
   await t.fundAddress(carol.address)
   await t.fundAddress(node1Address)
@@ -314,7 +315,9 @@ describe('FluxMonitor / FluxAggregator integration with two nodes', () => {
     fluxMonitorJob.initiators[0].params.pollTimer.period = '0'
     fluxMonitorJob.initiators[0].params.address = fluxAggregator.address
     fluxMonitorJob.initiators[0].params.feeds = [EXTERNAL_ADAPTER_URL]
+    fluxMonitorJob.tasks[2].params.fromAddress = node1Address
     clClient1.createJob(JSON.stringify(fluxMonitorJob))
+    fluxMonitorJob.tasks[2].params.fromAddress = node2Address
     fluxMonitorJob.initiators[0].params.feeds = [EXTERNAL_ADAPTER_2_URL]
     clClient2.createJob(JSON.stringify(fluxMonitorJob))
 
