@@ -215,6 +215,7 @@ describe('FluxMonitor / FluxAggregator integration with two nodes', () => {
     await linkToken.transfer(fluxAggregator.address, deposit).then(t.txWait)
     await fluxAggregator.updateAvailableFunds().then(t.txWait)
 
+    console.log(await fluxAggregator.getOracles())
     await fluxAggregator
       .changeOracles(
         [],
@@ -243,10 +244,10 @@ describe('FluxMonitor / FluxAggregator integration with two nodes', () => {
 
     fluxMonitorJob.initiators[0].params.address = fluxAggregator.address
     fluxMonitorJob.initiators[0].params.feeds = [EXTERNAL_ADAPTER_URL]
-    fluxMonitorJob.tasks[2].fromAddress = node1Address
+    fluxMonitorJob.tasks[2].params.fromAddress = node1Address
     clClient1.createJob(JSON.stringify(fluxMonitorJob))
     fluxMonitorJob.initiators[0].params.feeds = [EXTERNAL_ADAPTER_2_URL]
-    fluxMonitorJob.tasks[2].fromAddress = node2Address
+    fluxMonitorJob.tasks[2].params.fromAddress = node2Address
     clClient2.createJob(JSON.stringify(fluxMonitorJob))
 
     // initial job run
