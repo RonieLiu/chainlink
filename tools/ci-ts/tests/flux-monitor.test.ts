@@ -110,7 +110,12 @@ beforeAll(async () => {
   clClient1.login()
   clClient2.login()
   node1Address = clClient1.getAdminInfo()[0].address
-  node2Address = clClient2.getAdminInfo()[0].address
+  const keys = clClient2.getAdminInfo()
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i].address != node1Address) {
+      node2Address = keys[i].address
+    }
+  }
 
   await t.fundAddress(carol.address)
   await t.fundAddress(node1Address)
