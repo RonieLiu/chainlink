@@ -254,6 +254,7 @@ describe('FluxMonitor / FluxAggregator integration with two nodes', () => {
     clClient1.createJob(JSON.stringify(fluxMonitorJob))
     fluxMonitorJob.initiators[0].params.feeds = [EXTERNAL_ADAPTER_2_URL]
     fluxMonitorJob.tasks[2].params.fromAddress = node2Address
+    console.log(`using keys`, node1Address, node2Address)
     clClient2.createJob(JSON.stringify(fluxMonitorJob))
 
     // initial job run
